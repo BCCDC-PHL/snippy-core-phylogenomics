@@ -18,13 +18,8 @@ Core SNPs are identified by `snippy-core`. `gubbins` is used to identify and fil
 ## Running the pipeline
 
 ```
-nextflow run main.nf --input samples.tsv --ref ref.fa --outdir outdir
+nextflow run main.nf -profile conda --cache ~/.conda/envs --fastq_input <path_to_fastq_dir> --ref ref.fa --outdir outdir
 ```
 
-## Conda environments
-
-- snippy-4.4.5
-- gubbins-2.4.1
-- snp-sites-2.5.1
 
 
