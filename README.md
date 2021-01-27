@@ -7,13 +7,8 @@ Core SNPs are identified by `snippy-core`. `gubbins` is used to identify and fil
 
 ## Inputs
 
-- A .tsv file with three columns, with headers `sample_id`, `read_1`, `read_2`:
-
-1. `sample_id` An identifier for the sample
-2. `read_1` Path to the `R1` `.fastq.gz` sequence file
-3. `read_2` Path to the `R2` `.fastq.gz` sequence file
-
-- A reference .fasta file
+- `--fastq_input`: A directory containing paired `.fastq.gz` files
+- `--ref`: A reference `.fasta` file
 
 ## Running the pipeline
 
