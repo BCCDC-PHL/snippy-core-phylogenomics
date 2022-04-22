@@ -1,15 +1,17 @@
 process snp_dists {
-    publishDir "${params.outdir}", mode: 'copy', pattern: "distances.tsv"
+
+    publishDir "${params.outdir}", mode: 'copy', pattern: "${alignment.baseName}.distances.tsv"
+
     input:
     path(alignment)
 
     output:
-    path('distances.tsv')
+    path("${alignment.baseName}.distances.tsv")
 
     script:
     """
     snp-dists \
       '${alignment}' \
-      > distances.tsv
+      > ${alignment.baseName}.distances.tsv
     """
 }

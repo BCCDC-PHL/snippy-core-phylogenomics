@@ -6,8 +6,8 @@ channels:
 dependencies:
   - python=3
   - snippy=4.6.0
-  - gubbins=2.2.1
   - clonalframeml=1.12
+  - maskrc-svg=0.5
   - snp-sites=2.5.1
-  - snp-dists=0.7.0
-  - iqtree=1.5.5
+  - snp-dists=0.8.2
+  - iqtree=2.1.2

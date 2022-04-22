@@ -1,17 +1,19 @@
 process snippy_core {
-    publishDir "${params.outdir}", mode: 'copy', pattern: "clean.full.aln"
+    publishDir "${params.outdir}", mode: 'copy', pattern: "*.aln"
 
     input:
-    path(snippy_dirs)
-    path(ref) 
+    tuple path(snippy_dirs), path(ref), path(mask)
 
     output:
-    path('clean.full.aln')
+    path('core.aln'), emit: core_alignment
+    path('core.full.aln'), emit: full_alignment
+    path('clean.full.aln'), emit: clean_full_alignment
 
     script:
     """
     snippy-core \
-      --ref '${ref}' \
+      --ref ${ref} \
+      --mask ${mask} \
       $snippy_dirs
     snippy-clean_full_aln core.full.aln > clean.full.aln
     """

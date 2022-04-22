@@ -1,20 +1,23 @@
-# Snippy-Core -> Gubbins Pipeline
+# Snippy Phylogenomics
 
-This pipeline runs `snippy` on a set of illumina paired-end samples.
-It aligns reads against a reference genome using `bwa` and calls SNPs with `freebayes`.
-
-Core SNPs are identified by `snippy-core`. `gubbins` is used to identify and filter recombinant loci.
+Core SNPs are identified by `snippy-core`. [`ClonalFrameML`](https://github.com/xavierdidelot/ClonalFrameML) and [`maskrc-svg`](https://github.com/kwongj/maskrc-svg)
+are used to identify and filter recombinant loci.
 
 ## Inputs
 
-- `--fastq_input`: A directory containing paired `.fastq.gz` files
+- `--snippy_dirs`:
 - `--ref`: A reference `.fasta` file
 
-## Running the pipeline
+## Usage
 
 ```
-nextflow run main.nf -profile conda --cache ~/.conda/envs --fastq_input <path_to_fastq_dir> --ref ref.fa --outdir outdir
+nextflow run dfornika/snippy-phylogenomics-nf \
+  --snippy_dirs </path/to/snippy_output_dirs> \
+  --ref ref.fa \
+  [--mask mask.bed] \
+  --outdir outdir
 ```
 
+## Outputs
 
 
