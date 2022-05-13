@@ -4,10 +4,10 @@ channels:
   - bioconda
   - defaults
 dependencies:
-  - python=3
+  - python
   - snippy=4.6.0
-  - clonalframeml=1.12
-  - maskrc-svg=0.5
+  - gubbins
   - snp-sites=2.5.1
   - snp-dists=0.8.2
-  - iqtree=2.1.2
+  - iqtree=2
+  - shiptv=0.4.1
