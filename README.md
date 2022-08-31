@@ -11,7 +11,7 @@ are used to identify and filter recombinant loci.
 ## Usage
 
 ```
-nextflow run dfornika/snippy-phylogenomics-nf \
+nextflow run BCCDC-PHL/snippy-phylogenomics-nf \
   --snippy_dirs </path/to/snippy_output_dirs> \
   --ref ref.fa \
   [--mask mask.bed] \
