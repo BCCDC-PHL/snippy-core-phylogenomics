@@ -1,7 +1,6 @@
 # Snippy Phylogenomics
 
-Core SNPs are identified by `snippy-core`. [`ClonalFrameML`](https://github.com/xavierdidelot/ClonalFrameML) and [`maskrc-svg`](https://github.com/kwongj/maskrc-svg)
-are used to identify and filter recombinant loci.
+Core SNPs are identified by `snippy-core`. [`gubbins`](https://github.com/nickjcroucher/gubbins) is used to identify and filter recombinant loci.
 
 ## Inputs
 
