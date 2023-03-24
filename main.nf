@@ -3,12 +3,11 @@
 nextflow.enable.dsl = 2
 
 include { snippy_core } from './modules/snippy_core.nf'
-include { snp_sites } from './modules/snp_sites.nf'
-include { snp_dists as snp_dists_core } from './modules/snp_dists.nf'
-include { snp_dists as snp_dists_core_recomb_filtered } from './modules/snp_dists.nf'
-include { gubbins } from './modules/gubbins.nf'
-include { iqtree } from './modules/iqtree.nf'
-include { shiptv } from './modules/shiptv.nf'
+include { snp_sites }   from './modules/snp_sites.nf'
+include { snp_dists }   from './modules/snp_dists.nf'
+include { gubbins }     from './modules/gubbins.nf'
+include { iqtree }      from './modules/iqtree.nf'
+include { shiptv }      from './modules/shiptv.nf'
 
 
 workflow {
@@ -31,16 +30,19 @@ workflow {
 
   snippy_core(ch_snippy_dirs.collect().combine(ch_ref).map{ it -> [it[0..-2], it[-1]] }.combine(ch_mask))
 
-  gubbins(snippy_core.out.clean_full_alignment)
+  if (!params.skip_gubbins) {
+    gubbins(snippy_core.out.clean_full_alignment)
+    ch_alignment = gubbins.out.filtered_polymorphic_sites
+  } else {
+    ch_alignment = snippy_core.out.clean_full_alignment
+  }
 
-  snp_sites(gubbins.out.filtered_alignment)
+  snp_sites(ch_alignment)
 
   iqtree(snp_sites.out)
+
+  snp_dists(snp_sites.out)
   
-  snp_dists_core(snippy_core.out.core_alignment)
-
-  snp_dists_core_recomb_filtered(snp_sites.out)
-
   shiptv(iqtree.out)
 
 }
