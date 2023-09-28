@@ -23,7 +23,7 @@ workflow {
   if (params.mask == "NO_FILE") {
     ch_mask = Channel.fromPath("$baseDir/assets/mask.bed", checkIfExists: true)
   } else {
-    ch_mask = Channel.fromPath(${params.mask})
+    ch_mask = Channel.fromPath(params.mask)
   }
 
   main:
