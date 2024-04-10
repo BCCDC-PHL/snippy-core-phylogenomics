@@ -12,6 +12,8 @@ process snippy_core {
     path('core.tsv'), emit: core_stats
     path('core.full.aln'), emit: full_alignment
     path('clean.full.aln'), emit: clean_full_alignment
+    val('run_gubbins'), emit: run_gubbins
+
 
     script:
     """
@@ -23,5 +25,14 @@ process snippy_core {
     snippy-clean_full_aln core.full.aln > clean.full.aln
 
     add_percent_used.py core.txt > core.tsv
+
+    num_isolates=\$(echo "\$snippy_dirs" | tr -s ' ' | wc -w)
+    if [ "\$num_isolates" -ge 3 ]; then
+        run_gubbins='true'
+    else
+        run_gubbins='false'
+    fi
+    
     """
 }
+
