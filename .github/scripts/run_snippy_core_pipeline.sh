@@ -9,7 +9,7 @@ outdir=".github/data/snippy-core-phylogenomics-output"
 nextflow run main.nf \
 	 -profile conda \
 	 --cache ${HOME}/.conda/envs \
-	 --ref .github/data/assemblies/NC_000913.3.fasta \
+	 --ref .github/data/assemblies/NC_000913.3.fa \
 	 --snippy_dirs .github/data/snippy-variants-v0.1-output \
 	 --outdir ${outdir} \
 	 -with-report ${outdir}/nextflow_report.html \
