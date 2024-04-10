@@ -15,7 +15,6 @@ process gubbins {
 
   when:
   run_gubbins == "true"
-  
 
   script:
   """

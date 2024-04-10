@@ -32,13 +32,6 @@ process snippy_core {
     else
         run_gubbins='false'
     fi
-
-
-
-
-    
-
- 
     
     """
 }
