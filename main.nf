@@ -36,20 +36,16 @@ workflow {
   if (!params.skip_gubbins) {
   
     gubbins(snippy_core.out.clean_full_alignment)
-
     if (gubbins.out.filtered_polymorphic_sites != null) {
       ch_alignment = gubbins.out.filtered_polymorphic_sites
     } else {
     ch_alignment = snippy_core.out.clean_full_alignment
-  }
+    }
 
-    
   } else {
     ch_alignment = snippy_core.out.clean_full_alignment
   }
    
-
-
   snp_sites(ch_alignment)
 
   iqtree(snp_sites.out)
