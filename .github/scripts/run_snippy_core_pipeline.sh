@@ -2,7 +2,8 @@
 
 set -eo pipefail
 
-sed -i 's/cpus = 8/cpus = 4/g' nextflow.config 
+sed -i 's/cpus = 8/cpus = 4/g' nextflow.config
+sed -i 's/cpus = 16/cpus = 4/g' nextflow.config 
 
 outdir=".github/data/snippy-core-phylogenomics-output"
 
