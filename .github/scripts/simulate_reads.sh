@@ -32,4 +32,3 @@ while IFS=',' read -r sample_id assembly; do
     gzip -f .github/data/fastq/${sample_id}_R2.fastq
 
 done < .github/data/reads_to_simulate.csv
-
