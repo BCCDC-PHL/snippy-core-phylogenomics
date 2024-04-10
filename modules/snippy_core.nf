@@ -13,6 +13,8 @@ process snippy_core {
     path('core.full.aln'), emit: full_alignment
     path('clean.full.aln'), emit: clean_full_alignment
 
+
+
     script:
     """
     snippy-core \
@@ -23,5 +25,9 @@ process snippy_core {
     snippy-clean_full_aln core.full.aln > clean.full.aln
 
     add_percent_used.py core.txt > core.tsv
+
+
+    
     """
 }
+
