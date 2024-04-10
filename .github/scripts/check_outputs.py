@@ -4,88 +4,19 @@ import argparse
 import csv
 import glob
 import json
-import urllib.request
 
-from jsonschema import validate
-import yaml
-
-
-def check_provenance_format_valid(provenance_files, schema):
-    """
-    Check that the provenance files are valid according to the schema.
-    """
-    for provenance_file in provenance_files:
-        with open(provenance_file) as f:
-            try:
-                provenance = yaml.load(f, Loader=yaml.BaseLoader)
-                validate(provenance, schema)
-            except Exception as e:
-                return False
-
-    return True
-
-
-def check_expected_mutations(resistance_mutations_files, expected_mutations_by_sample_id):
-    """
-    Check that the resistance mutations files contain the expected mutations.
-    """
-    found_mutations_by_sample = {}
-    for resistance_mutations_file in resistance_mutations_files:
-        with open(resistance_mutations_file) as f:
-            reader = csv.DictReader(f)
-            for row in reader:
-                sample_id = row['sample_id']
-                gene = row['gene']
-                mutation = row['mutation']
-                if sample_id not in found_mutations_by_sample:
-                    found_mutations_by_sample[sample_id] = set([])
-                if mutation != '':
-                    found_mutations_by_sample[sample_id].add(':'.join([gene, mutation]))
-
-    for sample_id, expected_mutations in expected_mutations_by_sample_id.items():
-        if sample_id not in found_mutations_by_sample:
-            return False
-        if expected_mutations != found_mutations_by_sample[sample_id]:
-            return False
-
-    return True
 
 
 def main(args):
-    provenance_schema_url = "https://raw.githubusercontent.com/BCCDC-PHL/pipeline-provenance-schema/main/schema/pipeline-provenance.json"
-    provenance_schema_path = ".github/data/pipeline-provenance.json"
-    urllib.request.urlretrieve(provenance_schema_url, provenance_schema_path)
 
-    provenance_schema = None
-    with open(provenance_schema_path) as f:
-        provenance_schema = json.load(f)
-
-    provenace_files_glob = f"{args.pipeline_outdir}/**/*_provenance.yml"
-    provenance_files = glob.glob(provenace_files_glob, recursive=True)
-
-    resistance_mutations_files_glob = f"{args.pipeline_outdir}/**/*tbprofiler_resistance_mutations.csv"
-    resistance_mutations_files = glob.glob(resistance_mutations_files_glob, recursive=True)
-
-    expected_mutations_by_sample_id = {
-        'NC000962.3': set([]),
-        'ERR1664619': set([
-            'inhA:p.Ile194Thr',
-            'embA:c.-16C>T',
-            'embB:p.Met306Val',
-            'embB:p.Met423Thr',
-            'gyrA:p.Asp94Ala',
-            'rrs:n.1401A>G',
-        ]),                  
-    }       
+    clean_core_distances_glob = f"{args.pipeline_outdir}/**/*clean.core.distances.csv"
+    clean_core_distances_files = glob.glob(clean_core_distances_glob, recursive=True)
+    clean_core_distances_file_exists = len(clean_core_distances_files) > 0
 
     tests = [
         {
-            "test_name": "provenance_format_valid",
-            "test_passed": check_provenance_format_valid(provenance_files, provenance_schema),
-        },
-        {
-            "test_name": "expected_mutations",
-            "test_passed": check_expected_mutations(resistance_mutations_files, expected_mutations_by_sample_id),
+            "test_name": "clean_core_distances_file_exists",
+            "test_passed": clean_core_distances_file_exists
         },
     ]
 
