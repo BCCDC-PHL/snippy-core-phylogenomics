@@ -26,7 +26,7 @@ jobs:
         NXF_VER: ${{ matrix.nextflow_version }}
       run: bash .github/scripts/install_nextflow.sh
     - name: Create mutated genomes
-      run: bash .github/scripts/add_mutations.sh
+      run: bash .github/scripts/apply_variants.sh
     - name: Create ART Read-Simulation Environment
       run: bash .github/scripts/create_art_environment.sh
     - name: Apply Variants
