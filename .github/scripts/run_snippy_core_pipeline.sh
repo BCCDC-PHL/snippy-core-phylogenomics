@@ -4,7 +4,7 @@ set -eo pipefail
 
 sed -i 's/cpus = 8/cpus = 4/g' nextflow.config 
 
-outdir = .github/data/snippy-core-phylogenomics-output
+outdir=".github/data/snippy-core-phylogenomics-output"
 
 nextflow run main.nf \
 	 -profile conda \
