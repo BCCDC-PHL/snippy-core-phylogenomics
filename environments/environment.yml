@@ -1,8 +1,7 @@
-name: snippy-phylogenomics
+name: snippy-core-phylogenomics
 channels:
   - conda-forge
   - bioconda
-  - defaults
 dependencies:
   - python
   - snippy=4.6.0
