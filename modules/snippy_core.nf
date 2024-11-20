@@ -15,7 +15,6 @@ process snippy_core {
 
 
     script:
-    
     """
     snippy-core \
       --ref ${ref} \
