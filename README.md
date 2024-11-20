@@ -38,7 +38,7 @@ Note: the process WITHOUT gubbins occurs if --skip_gubbins is true, or if there 
 ## Usage
 
 ```
-nextflow run BCCDC-PHL/snippy-phylogenomics-nf \
+nextflow run BCCDC-PHL/snippy-core-phylogenomics \
   --snippy_dirs </path/to/snippy_output_dirs> \
   --ref ref.fa \
   [--mask mask.bed] \
