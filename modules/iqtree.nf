@@ -13,8 +13,8 @@ process iqtree {
   """
   printf -- "- process_name: iqtree\\n"                                                      >> iqtree_provenance.yml
   printf -- "  tools:\\n"                                                                    >> iqtree_provenance.yml
-  printf -- "    - tool_name: \\n"                                                           >> iqtree_provenance.yml
-  printf -- "      tool_version: \$(iqtree --version | awk '/version/ {print \$3}')\\n"     >> iqtree_provenance.yml
+  printf -- "    - tool_name: iqtree\\n"                                                     >> iqtree_provenance.yml
+  printf -- "      tool_version: \$(iqtree --version 2>&1 | awk '/IQ-TREE/ {print \$4}')\\n" >> iqtree_provenance.yml
   printf -- "      parameters:\\n"                                                           >> iqtree_provenance.yml
   printf -- "        - parameter: -nt\\n"                                                    >> iqtree_provenance.yml
   printf -- "          value: ${task.cpus}\\n"                                               >> iqtree_provenance.yml
