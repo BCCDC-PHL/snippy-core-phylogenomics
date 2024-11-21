@@ -14,7 +14,7 @@ process snp_dists {
   printf -- "- process_name: snp_dists\\n"                                                        >> snp_dists_provenance.yml
   printf -- "  tools:\\n"                                                                         >> snp_dists_provenance.yml
   printf -- "    - tool_name: snp-dists\\n"                                                       >> snp_dists_provenance.yml
-  printf -- "      tool_version: \$(snp-dists -v | awk '{print ${2}}')\\n"                        >> snp_dists_provenance.yml
+  printf -- "      tool_version: \$(snp-dists -v | awk '{print \$2}')\\n"                        >> snp_dists_provenance.yml
 
   snp-dists \
     '${alignment}' \

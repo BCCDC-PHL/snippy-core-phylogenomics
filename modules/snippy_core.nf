@@ -20,7 +20,7 @@ process snippy_core {
     printf -- "- process_name: snippy_core\\n"                                                      >> snippy_core_provenance.yml
     printf -- "  tools:\\n"                                                                         >> snippy_core_provenance.yml
     printf -- "    - tool_name: snippy_core\\n"                                                     >> snippy_core_provenance.yml
-    printf -- "      tool_version: \$(snippy-core --version | awk '{print ${2}')\\n"                >> snippy_core_provenance.yml
+    printf -- "      tool_version: \$(snippy-core --version | awk '{print \$2}')\\n"                >> snippy_core_provenance.yml
     printf -- "      parameters:\\n"                                                                >> snippy_core_provenance.yml
     printf -- "        - parameter: --ref\\n"                                                       >> snippy_core_provenance.yml
     printf -- "          value: ${ref}\\n"                                                          >> snippy_core_provenance.yml

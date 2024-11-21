@@ -19,7 +19,7 @@ process gubbins {
   printf -- "- process_name: gubbins\\n"                                                     >> gubbins_provenance.yml
   printf -- "  tools:\\n"                                                                    >> gubbins_provenance.yml
   printf -- "    - tool_name: gubbins\\n"                                                    >> gubbins_provenance.yml
-  printf -- "      tool_version: \$(gubbins -h | grep -i "Version:" | awk '{print ${2}}')\\n"  >> gubbins_provenance.yml
+  printf -- "      tool_version: \$(gubbins -h | grep -i \"Version:\" | awk '{print \$2}')\\n"  >> gubbins_provenance.yml
   printf -- "      parameters:\\n"                                                           >> gubbins_provenance.yml
   printf -- "        - parameter: --threads\\n"                                              >> gubbins_provenance.yml
   printf -- "          value: ${task.cpus}\\n"                                               >> gubbins_provenance.yml
