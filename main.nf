@@ -65,17 +65,13 @@ workflow {
   // The basic idea is to build up a channel with the following structure:
   // [sample_id, [provenance_file_1.yml, provenance_file_2.yml, provenance_file_3.yml...]]
   // ...and then concatenate them all together in the 'collect_provenance' process.
-  ch_provenance = ch_pipeline_provenance.map{ it -> [it[0], [it[1]]] }
-
-  ch_provenance = ch_provenance.join(snippy_core.out.provenance).map{ it -> [it[0], it[1] << it[2]] }
-  ch_provenance = ch_provenance.join(gubbins.out.provenance).map{ it -> [it[0], it[1] << it[2]] }
-  ch_provenance = ch_provenance.join(snp_sites.out.provenance).map{ it -> [it[0], it[1] << it[2]] }
-
-  ch_provenance = ch_provenance.join(snp_dists.out.provenance).map{ it -> [it[0], it[1] << it[2]] }
-
-  ch_provenance = ch_provenance.join(iqtree.out.provenance).map{ it -> [it[0], it[1] << it[2]] }
-
-  ch_provenance = ch_provenance.join(shiptv.out.provenance).map{ it -> [it[0], it[1] << it[2]] }
+  ch_provenance = pipeline_provenance.out
+    .mix(snippy_core.out.provenance)
+    .mix(gubbins.out.provenance)
+    .mix(snp_sites.out.provenance)
+    .mix(iqtree.out.provenance)
+    .mix(shiptv.out.provenance)
+    .collect()
 
   collect_provenance(ch_provenance)
 
