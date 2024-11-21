@@ -81,7 +81,7 @@ In the output directory, a provenance file will be written with the following fo
       tool_version: 2.5.1
       parameters:
         - parameter: -c
-          value: 'gubbins.filtered_polymorphic_sites.fasta'
+          value: gubbins.filtered_polymorphic_sites.fasta
 - process_name: iqtree
   tools:
     - tool_name: 

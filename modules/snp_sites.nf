@@ -17,7 +17,7 @@ process snp_sites {
   printf -- "      tool_version: \$(snp-sites -V | awk '{print \$2}')\\n"                        >> snp_sites_provenance.yml
   printf -- "      parameters:\\n"                                                                >> snp_sites_provenance.yml
   printf -- "        - parameter: -c\\n"                                                          >> snp_sites_provenance.yml
-  printf -- "          value: '${alignment}'\\n"                                                  >> snp_sites_provenance.yml
+  printf -- "          value: ${alignment}\\n"                                                  >> snp_sites_provenance.yml
 
   snp-sites \
     -c '${alignment}' \
