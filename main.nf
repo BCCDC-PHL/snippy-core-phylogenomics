@@ -63,7 +63,7 @@ workflow {
 
   // Provenance collection processes
   // The basic idea is to build up a channel with the following structure:
-  // [sample_id, [provenance_file_1.yml, provenance_file_2.yml, provenance_file_3.yml...]]
+  // [provenance_file_1.yml, provenance_file_2.yml, provenance_file_3.yml...]]
   // ...and then concatenate them all together in the 'collect_provenance' process.
   ch_pipeline_prov = pipeline_provenance.out
   ch_snippy_prov = snippy_core.out.provenance
