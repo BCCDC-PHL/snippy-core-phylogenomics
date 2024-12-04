@@ -73,13 +73,25 @@ workflow {
   ch_shiptv_prov = shiptv.out.provenance
 
 // Now, combine these channels in the desired order
-  ch_provenance = ch_pipeline_prov
+
+  if (!params.skip_gubbins) {
+    ch_provenance = ch_pipeline_prov
     .concat(ch_snippy_prov)
     .concat(ch_gubbins_prov)
     .concat(ch_snp_sites_prov)
     .concat(ch_iqtree_prov)
     .concat(ch_shiptv_prov)
     .collect()
+
+  } else {
+    ch_provenance = ch_pipeline_prov
+    .concat(ch_snippy_prov)
+    .concat(ch_snp_sites_prov)
+    .concat(ch_iqtree_prov)
+    .concat(ch_shiptv_prov)
+    .collect()
+  }
+
 
   collect_provenance(ch_provenance)
 
