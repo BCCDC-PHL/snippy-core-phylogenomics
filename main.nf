@@ -66,13 +66,13 @@ workflow {
   // [provenance_file_1.yml, provenance_file_2.yml, provenance_file_3.yml...]]
   // ...and then concatenate them all together in the 'collect_provenance' process.
 
-// Now, combine these channels in the desired order
-
    ch_pipeline_prov = pipeline_provenance.out
    ch_snippy_prov = snippy_core.out.provenance
    ch_snp_sites_prov = snp_sites.out.provenance
    ch_iqtree_prov = iqtree.out.provenance
    ch_shiptv_prov = shiptv.out.provenance
+
+// Add gubbins output if applicable and combine these channels in the desired order
 
   if (!params.skip_gubbins) {
     ch_gubbins_prov = gubbins.out.provenance
