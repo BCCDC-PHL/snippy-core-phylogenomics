@@ -65,16 +65,17 @@ workflow {
   // The basic idea is to build up a channel with the following structure:
   // [provenance_file_1.yml, provenance_file_2.yml, provenance_file_3.yml...]]
   // ...and then concatenate them all together in the 'collect_provenance' process.
-  ch_pipeline_prov = pipeline_provenance.out
-  ch_snippy_prov = snippy_core.out.provenance
-  ch_gubbins_prov = gubbins.out.provenance
-  ch_snp_sites_prov = snp_sites.out.provenance
-  ch_iqtree_prov = iqtree.out.provenance
-  ch_shiptv_prov = shiptv.out.provenance
 
 // Now, combine these channels in the desired order
 
   if (!params.skip_gubbins) {
+    ch_pipeline_prov = pipeline_provenance.out
+    ch_snippy_prov = snippy_core.out.provenance
+    ch_gubbins_prov = gubbins.out.provenance
+    ch_snp_sites_prov = snp_sites.out.provenance
+    ch_iqtree_prov = iqtree.out.provenance
+    ch_shiptv_prov = shiptv.out.provenance
+
     ch_provenance = ch_pipeline_prov
     .concat(ch_snippy_prov)
     .concat(ch_gubbins_prov)
@@ -84,6 +85,12 @@ workflow {
     .collect()
 
   } else {
+    ch_pipeline_prov = pipeline_provenance.out
+    ch_snippy_prov = snippy_core.out.provenance
+    ch_snp_sites_prov = snp_sites.out.provenance
+    ch_iqtree_prov = iqtree.out.provenance
+    ch_shiptv_prov = shiptv.out.provenance
+
     ch_provenance = ch_pipeline_prov
     .concat(ch_snippy_prov)
     .concat(ch_snp_sites_prov)
