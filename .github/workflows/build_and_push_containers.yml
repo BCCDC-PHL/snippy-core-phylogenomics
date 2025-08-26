@@ -3,7 +3,7 @@ name: Build and Push Container Images
 on:
   push:
     branches:
-      -add-apptainer-support
+      - add-apptainer-support
     tags:
       - v*
   workflow_dispatch:
