@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - bioconda
 dependencies:
-  - python
+  - python=3.9
   - snippy=4.6.0
   - gubbins=3.3.5
   - snp-sites=2.5.1
