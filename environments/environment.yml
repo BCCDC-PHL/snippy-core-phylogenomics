@@ -5,7 +5,7 @@ channels:
 dependencies:
   - python
   - snippy=4.6.0
-  - gubbins=3.4.3
+  - gubbins=3.4.1
   - snp-sites=2.5.1
   - snp-dists=0.8.2
   - iqtree=2
