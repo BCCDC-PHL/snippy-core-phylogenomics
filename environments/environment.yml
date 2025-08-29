@@ -10,3 +10,4 @@ dependencies:
   - snp-dists=0.8.2
   - iqtree=2
   - shiptv=0.4.1
+  - matplotlib
