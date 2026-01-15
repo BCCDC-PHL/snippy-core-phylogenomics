@@ -1,3 +1,5 @@
+[![Tests](https://github.com/BCCDC-PHL/snippy-core-phylogenomics/actions/workflows/tests.yml/badge.svg)](https://github.com/BCCDC-PHL/snippy-core-phylogenomics/actions/workflows/tests.yml)
+
 # Snippy Phylogenomics
 
 Core SNPs are identified by `snippy-core`. [`gubbins`](https://github.com/nickjcroucher/gubbins) is used to identify and filter recombinant loci.
